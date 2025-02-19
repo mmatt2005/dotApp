@@ -3,9 +3,9 @@ import Image from "next/image";
 import Script from "next/script";
 
 export default function Home() {
-  return <div className="">
+  return <div className="flex">
     <canvas/>
     <GameUiMain/>
-    <Script src="/game/main.js" strategy="afterInteractive"/>
+    <Script src="/game/main.js" strategy="afterInteractive" type="module"/>
   </div>
 }
