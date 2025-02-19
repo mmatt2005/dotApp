@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./public/game",
+    "outDir": "./public/dist",
     "rootDir": "./gameSrc",
     "target": "ES2017",
     "lib": [
@@ -13,14 +13,16 @@
     "esModuleInterop": true,
     "module": "esnext",
     "strict": true,
-    "baseUrl": ".",  
+    "baseUrl": "./gameSrc",  
     "allowArbitraryExtensions": true,
+    "moduleResolution": "node",
     "paths": {
-      "@src/*": ["./public/game/*"]
+      "@dist/*": ["./public/dist/*"]
 
     },
   },
   "include": [
     "gameSrc"
-  ]
+  ],
+  "exclude": ["node_modules", "public/dist", "**/dist/*"]
 }

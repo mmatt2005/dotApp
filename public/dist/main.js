@@ -1,4 +1,4 @@
-import { Point } from "@src/point.js";
+import { Point } from "./point.js";
 // The width of the ui in pixels
 const UI_WIDTH = 400;
 const canvas = document.querySelector("canvas");

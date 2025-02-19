@@ -5,7 +5,6 @@ export class Point {
     }
     x: number
     y: number
-
     
     /**
      * @description size in both width & height

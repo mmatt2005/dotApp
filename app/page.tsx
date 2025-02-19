@@ -6,6 +6,6 @@ export default function Home() {
   return <div className="flex">
     <canvas/>
     <GameUiMain/>
-    <Script src="/game/main.js" strategy="afterInteractive" type="module"/>
+    <Script src="/dist/main.js" strategy="afterInteractive" type="module"/>
   </div>
 }
