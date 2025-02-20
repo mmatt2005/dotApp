@@ -2,12 +2,8 @@
 import GameUiMain from "@/components/game_ui/gameUiMain";
 import { Game } from "../public/dist/main";
 import { useEffect, useRef, useState } from "react";
+import { GameUi } from "@/lib/types";
 
-type RemoveMethods<T> = {
-  [K in keyof T as T[K] extends Function ? never : K]: T[K];
-};
-
-export type GameUi = Omit<RemoveMethods<Game>, "canvas" | "context">;
 
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
