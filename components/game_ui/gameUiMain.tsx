@@ -14,11 +14,11 @@ export default function GameUiMain({ game, ui }: {
 
     return <div className="grow bg-card">
         {
-            game.points.map(point => <div key={point.id} className="bg-card p-4 my-4">
+            game.pointWrapper.points.map(point => <div key={point.id} className="bg-card p-4 my-4">
                 x: {point.x}
                 y: {point.y}
                 <Button onClick={() => {
-                    game.removePoint(point)
+                    game.pointWrapper.removePoint(point)
                 }}><Trash2Icon /></Button>
 
                 <div className="">
