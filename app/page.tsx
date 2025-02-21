@@ -22,7 +22,6 @@ export default function Home() {
       setGameUi(game)
 
       game.onUiUpdate = (updateUi) => {
-        console.log("TEST")
         setGameUi({...updateUi})
       }
     }

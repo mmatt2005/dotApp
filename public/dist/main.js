@@ -1,4 +1,4 @@
-import { PointWrapper } from "./pointWrapper.js";
+import { GeometryWrapper } from "./geometry/geometryWrapper.js";
 // The width of the ui in pixels
 const UI_WIDTH = 400;
 export class Game {
@@ -7,8 +7,8 @@ export class Game {
         this.context = canvas.getContext("2d");
         canvas.width = window.innerWidth - UI_WIDTH;
         canvas.height = window.innerHeight;
-        this.pointWrapper = new PointWrapper(this.canvas, this.updateUi.bind(this));
-        this.pointWrapper.listeners(); // Start the event listeners needed for points
+        this.geometryWrapper = new GeometryWrapper(this.canvas, this.updateUi.bind(this));
+        this.geometryWrapper.listeners(); // Start the event listeners needed for points
         this.loop();
     }
     /**
@@ -32,6 +32,7 @@ export class Game {
      * @description re draws the whole game canvas
      */
     draw() {
-        this.pointWrapper.points.forEach(point => point.draw(this.context));
+        this.geometryWrapper.points.forEach(point => point.draw(this.context));
+        this.geometryWrapper.lines.forEach(line => line.draw(this.context));
     }
 }
