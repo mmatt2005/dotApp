@@ -7,6 +7,19 @@ export class VehicleWrapper {
     addVehicle(newVehicle) {
         this.vehicles.push(newVehicle);
     }
+    getConnectedPoints(currentPoint) {
+        const connectedPoints = [];
+        const connectedLines = this.lines.filter(line => line.point1.id === currentPoint.id || line.point2.id === currentPoint.id);
+        connectedLines.forEach(line => {
+            if (line.point1.id !== currentPoint.id) {
+                connectedPoints.push(line.point1);
+            }
+            else if (line.point2.id !== currentPoint.id) {
+                connectedPoints.push(line.point2);
+            }
+        });
+        return connectedPoints;
+    }
     /**
      * 2/21/25 6:19pm
      * @description spawns a vehicle on a random line
@@ -17,8 +30,7 @@ export class VehicleWrapper {
             return;
         }
         const randomSpawnLine = this.lines[Math.floor(Math.random() * this.lines.length)];
-        console.log(randomSpawnLine);
-        const newVehicle = new Vehicle(randomSpawnLine);
+        const newVehicle = new Vehicle(randomSpawnLine, this);
         this.addVehicle(newVehicle);
         newVehicle.moveTo(randomSpawnLine.point2);
     }

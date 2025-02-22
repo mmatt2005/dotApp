@@ -1,8 +1,8 @@
 "use client"
 import GameUiMain from "@/components/game_ui/gameUiMain";
-import { Game } from "../public/dist/main";
 import { useEffect, useRef, useState } from "react";
 import { GameUi } from "@/lib/types";
+import { Game } from "@/public/dist/main";
 
 
 export default function Home() {

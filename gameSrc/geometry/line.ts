@@ -1,5 +1,6 @@
-import { Point } from "./point";
 import { v4 as uuidv4 } from "uuid"
+import { Point } from "./point"
+
 export class Line {
     constructor(point1: Point, point2: Point) {
         this.point1 = point1

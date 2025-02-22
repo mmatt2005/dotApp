@@ -1,5 +1,6 @@
 import { GeometryWrapper } from "../geometry/geometryWrapper";
 import { Line } from "../geometry/line";
+import { Point } from "../geometry/point";
 import { Vehicle } from "./vehicle";
 
 export class VehicleWrapper{ 
@@ -15,6 +16,22 @@ export class VehicleWrapper{
         this.vehicles.push(newVehicle)
     }
 
+
+    getConnectedPoints(currentPoint: Point): Point[] {
+        const connectedPoints: Point[] = []
+
+        const connectedLines = this.lines.filter(line => line.point1.id === currentPoint.id || line.point2.id === currentPoint.id)
+
+        connectedLines.forEach(line => {
+            if (line.point1.id !== currentPoint.id) {
+                connectedPoints.push(line.point1)
+            } else if (line.point2.id !== currentPoint.id) {
+                connectedPoints.push(line.point2)
+            }
+        })
+
+        return connectedPoints
+    }
     
     /** 
      * 2/21/25 6:19pm
@@ -28,9 +45,7 @@ export class VehicleWrapper{
 
         const randomSpawnLine = this.lines[Math.floor(Math.random() * this.lines.length)]
 
-        console.log(randomSpawnLine)
-
-        const newVehicle = new Vehicle(randomSpawnLine)
+        const newVehicle = new Vehicle(randomSpawnLine, this)
         this.addVehicle(newVehicle)
 
         newVehicle.moveTo(randomSpawnLine.point2)

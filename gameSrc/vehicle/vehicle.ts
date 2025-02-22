@@ -1,12 +1,19 @@
 import { Line } from "../geometry/line";
 import { Point } from "../geometry/point";
+import { VehicleWrapper } from "./vehicleWrapper";
 
 export class Vehicle {
-    constructor(line: Line) {
+
+
+    constructor(line: Line, vehicleWrapper: VehicleWrapper) { 
+
         this.line = line
 
         this.x = line.point1.x
         this.y = line.point1.y
+        this.currentPoint = line.point1
+
+        this.vehicleWrapper = vehicleWrapper
     }
 
     /**
@@ -17,6 +24,10 @@ export class Vehicle {
 
     x: number
     y: number
+
+    currentPoint: Point
+
+    vehicleWrapper: VehicleWrapper
 
 
     /**
@@ -34,6 +45,12 @@ export class Vehicle {
         context.fill();
     }
 
+
+    selectRandomMoveToPoint() { 
+        const availablePoints = this.vehicleWrapper.getConnectedPoints(this.currentPoint)
+        
+        return availablePoints[Math.floor(Math.random() * availablePoints.length)]
+    }
 
     moveTo(moveToPoint: Point) {
         const startPos = {
@@ -55,7 +72,11 @@ export class Vehicle {
 
 
         const animate = () => {
-            if (moved >= distance) return // Stop when the target is reached
+            if (moved >= distance) {
+                this.currentPoint = moveToPoint
+                this.moveTo(this.selectRandomMoveToPoint())
+                return 
+            }
 
             // Move by a fixed number of pixels per frame
             this.x += dirX * this.speed

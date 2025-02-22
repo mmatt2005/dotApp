@@ -1,5 +1,5 @@
-import { Line } from "./line";
-import { Point } from "./point";
+import { Line } from "./line"
+import { Point } from "./point"
 
 export class GeometryWrapper {
     constructor(canvas: HTMLCanvasElement, updateUi: () => void) {

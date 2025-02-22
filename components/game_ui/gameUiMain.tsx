@@ -1,11 +1,11 @@
 "use client"
 
-import { Game } from "@/gameSrc/main"
 import { Button } from "../ui/button"
 import { Trash2Icon } from "lucide-react"
 import { GameUi } from "@/lib/types"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
+import { Game } from "@/gameSrc/main"
 
 export default function GameUiMain({ game, ui }: {
     game: Game,
@@ -14,13 +14,19 @@ export default function GameUiMain({ game, ui }: {
 
     return <div className="grow bg-card max-h-screen overflow-y-auto">
         <Button
-        onClick={() => { 
-            game.vehicleWrapper.spawnVehicle()
-        }}
+            onClick={() => {
+                game.vehicleWrapper.spawnVehicle()
+            }}
         >Spawn Vehicle</Button>
+        <Button
+            onClick={() => {
+                console.log(game.vehicleWrapper.getConnectedPoints(game.vehicleWrapper.vehicles[0].currentPoint)
+                )
+            }}
+        >Get Connected points</Button>
 
         <Button
-            onClick={() => { 
+            onClick={() => {
                 game.vehicleWrapper.vehicles[0].moveTo(game.vehicleWrapper.vehicles[0].line.point1)
             }}
         >Move To other pt</Button>

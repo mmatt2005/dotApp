@@ -1,5 +1,5 @@
 export class Vehicle {
-    constructor(line) {
+    constructor(line, vehicleWrapper) {
         /**
          * @description size in both width & height
          */
@@ -10,12 +10,18 @@ export class Vehicle {
         this.line = line;
         this.x = line.point1.x;
         this.y = line.point1.y;
+        this.currentPoint = line.point1;
+        this.vehicleWrapper = vehicleWrapper;
     }
     draw(context) {
         context.fillStyle = this.color;
         context.beginPath();
         context.roundRect(this.x, this.y, this.size, this.size, this.borderRadius);
         context.fill();
+    }
+    selectRandomMoveToPoint() {
+        const availablePoints = this.vehicleWrapper.getConnectedPoints(this.currentPoint);
+        return availablePoints[Math.floor(Math.random() * availablePoints.length)];
     }
     moveTo(moveToPoint) {
         const startPos = {
@@ -32,8 +38,11 @@ export class Vehicle {
         const dirY = dy / distance;
         let moved = 0; // Track how much has been moved
         const animate = () => {
-            if (moved >= distance)
-                return; // Stop when the target is reached
+            if (moved >= distance) {
+                this.currentPoint = moveToPoint;
+                this.moveTo(this.selectRandomMoveToPoint());
+                return;
+            }
             // Move by a fixed number of pixels per frame
             this.x += dirX * this.speed;
             this.y += dirY * this.speed;

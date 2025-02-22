@@ -1,27 +1,27 @@
 {
-  "compilerOptions": {
-    "outDir": "./public/dist",
-    "rootDir": "./gameSrc",
-    "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "strict": true,
-    "allowArbitraryExtensions": true,
-    "moduleResolution": "node",
-    "paths": {
-      "@dist/*": ["./public/dist/*"]
-
+    "compilerOptions": {
+      "outDir": "./public/dist",
+      "rootDir": "./gameSrc",
+      "target": "ES2017",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "strict": true,
+      "allowArbitraryExtensions": true,
+      "moduleResolution": "node",
+      "paths": {
+        "@dist/*": ["./public/dist/*"]
+  
+      },
     },
-  },
-  "include": [
-    "gameSrc"
-  ],
-  "exclude": ["node_modules", "public/dist", "**/dist/*"]
-}
+    "include": [
+      "gameSrc"
+    ],
+    "exclude": ["node_modules", "public/dist", "**/dist/*"]
+  }
