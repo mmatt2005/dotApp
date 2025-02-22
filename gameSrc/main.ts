@@ -1,5 +1,6 @@
 import { GeometryWrapper } from "./geometry/geometryWrapper.js"
 import { Point } from "./geometry/point.js"
+import { VehicleWrapper } from "./vehicle/vehicleWrapper.js"
 
 // The width of the ui in pixels
 const UI_WIDTH = 400
@@ -18,12 +19,15 @@ export class Game {
         this.geometryWrapper = new GeometryWrapper(this.canvas, this.updateUi.bind(this))
         this.geometryWrapper.listeners() // Start the event listeners needed for points
 
+        this.vehicleWrapper = new VehicleWrapper(this.geometryWrapper.lines)
+
         this.loop()
     }
     canvas: HTMLCanvasElement
     context: CanvasRenderingContext2D
 
     geometryWrapper: GeometryWrapper
+    vehicleWrapper: VehicleWrapper
 
     
     /** 
@@ -54,8 +58,9 @@ export class Game {
      * @description re draws the whole game canvas
      */
     draw() {
-        this.geometryWrapper.points.forEach(point => point.draw(this.context))
         this.geometryWrapper.lines.forEach(line => line.draw(this.context))
+        this.geometryWrapper.points.forEach(point => point.draw(this.context))
+        this.vehicleWrapper.vehicles.forEach(vehicle => vehicle.draw(this.context))
     }
 }
 

@@ -1,4 +1,5 @@
 import { GeometryWrapper } from "./geometry/geometryWrapper.js";
+import { VehicleWrapper } from "./vehicle/vehicleWrapper.js";
 // The width of the ui in pixels
 const UI_WIDTH = 400;
 export class Game {
@@ -9,6 +10,7 @@ export class Game {
         canvas.height = window.innerHeight;
         this.geometryWrapper = new GeometryWrapper(this.canvas, this.updateUi.bind(this));
         this.geometryWrapper.listeners(); // Start the event listeners needed for points
+        this.vehicleWrapper = new VehicleWrapper(this.geometryWrapper.lines);
         this.loop();
     }
     /**
@@ -32,7 +34,8 @@ export class Game {
      * @description re draws the whole game canvas
      */
     draw() {
-        this.geometryWrapper.points.forEach(point => point.draw(this.context));
         this.geometryWrapper.lines.forEach(line => line.draw(this.context));
+        this.geometryWrapper.points.forEach(point => point.draw(this.context));
+        this.vehicleWrapper.vehicles.forEach(vehicle => vehicle.draw(this.context));
     }
 }

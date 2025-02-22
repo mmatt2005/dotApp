@@ -5,7 +5,7 @@ export class Point {
          * @description size in both width & height
          * @type {number}
          */
-        this.size = 12;
+        this.size = 18;
         this.borderRadius = 0;
         this.color = "black";
         this.x = x;
@@ -20,6 +20,16 @@ export class Point {
      */
     updateStyle(attribute, newStyle) {
         this[attribute] = newStyle;
+    }
+    /**
+     * @description gets the center of the point
+     * @returns {{ x: number; y: number; }} center (x,y) of the point
+     */
+    getCenter() {
+        return {
+            x: this.x + (this.size / 2),
+            y: this.y + (this.size / 2)
+        };
     }
     /**
      * @description draws the point to the canvas

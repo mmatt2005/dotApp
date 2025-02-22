@@ -16,7 +16,7 @@ export class Point {
      * @description size in both width & height
      * @type {number}
      */
-    size: number = 12
+    size: number = 18
     borderRadius: number = 0
     color: string = "black"
 
@@ -29,6 +29,18 @@ export class Point {
      */
     updateStyle(attribute: keyof PointStyles, newStyle: PointStyles[typeof attribute]) {
         (this[attribute] as typeof newStyle) = newStyle
+    }
+
+    
+    /**
+     * @description gets the center of the point 
+     * @returns {{ x: number; y: number; }} center (x,y) of the point
+     */
+    getCenter() { 
+        return {
+            x: this.x + (this.size / 2),
+            y: this.y + (this.size / 2)
+        }
     }
 
     

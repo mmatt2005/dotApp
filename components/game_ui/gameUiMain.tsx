@@ -13,6 +13,17 @@ export default function GameUiMain({ game, ui }: {
 }) {
 
     return <div className="grow bg-card max-h-screen overflow-y-auto">
+        <Button
+        onClick={() => { 
+            game.vehicleWrapper.spawnVehicle()
+        }}
+        >Spawn Vehicle</Button>
+
+        <Button
+            onClick={() => { 
+                game.vehicleWrapper.vehicles[0].moveTo(game.vehicleWrapper.vehicles[0].line.point1)
+            }}
+        >Move To other pt</Button>
         {
             game.geometryWrapper.points.map(point => <div key={point.id} className="bg-card p-4 my-4">
                 Point
